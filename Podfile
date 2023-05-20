@@ -6,5 +6,6 @@ target 'RickAndMorty' do
 
   # Pods for RickAndMorty
   pod 'Alamofire', '~> 5.7'
+  pod 'SDWebImage', '~> 5.0'
 
 end
