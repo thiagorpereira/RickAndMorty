@@ -8,9 +8,10 @@
 import UIKit
 import Alamofire
 
-class CharacterViewController: UIViewController {
+class CharactersViewController: UIViewController {
     
     private var characters: [Character] = [Character]()
+    var currentPage = 1
     
     private let characterTable: UITableView = {
        let table = UITableView()
@@ -38,33 +39,45 @@ class CharacterViewController: UIViewController {
     }
     
     private func fetchCharacters() {
-//        print("OLA")
-//        AF.request("https://httpbin.org/get").response { response in
-//            print("ue@ \(response)")
-//        }
-        
+
         let url = "https://rickandmortyapi.com/api/character"
 
         AF.request(url).responseDecodable(of: GetCharactersResponse.self) { [weak self] response in
             switch response.result {
             case .success(let resp):
-                // Processar os dados dos usuários
                 self?.characters = resp.results
                 DispatchQueue.main.async {
                     self?.characterTable.reloadData()
                 }
-//                for i in resp.results {
-//                    print(i.name)
-//                }
             case .failure(let error):
-                // Lidar com erros
                 print(error)
+            }
+        }
+    }
+    
+    func fetchMoreCharactersIfNeeded(for indexPath: IndexPath) {
+        let lastRowIndex = characterTable.numberOfRows(inSection: 0) - 1
+        if indexPath.row == lastRowIndex {
+            currentPage += 1
+            
+            let urlString = "https://rickandmortyapi.com/api/character/?page=\(currentPage)"
+
+            AF.request(urlString).responseDecodable(of: GetCharactersResponse.self) { [weak self] response in
+                switch response.result {
+                case .success(let resp):
+                    self?.characters.append(contentsOf: resp.results)
+                    DispatchQueue.main.async {
+                        self?.characterTable.reloadData()
+                    }
+                case .failure(let error):
+                    print("Error on fetch more Characters: \(error)")
+                }
             }
         }
     }
 }
 
-extension CharacterViewController: UITableViewDelegate, UITableViewDataSource {
+extension CharactersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return characters.count
     }
@@ -85,5 +98,7 @@ extension CharacterViewController: UITableViewDelegate, UITableViewDataSource {
         return 140
     }
     
-    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        fetchMoreCharactersIfNeeded(for: indexPath)
+    }
 }

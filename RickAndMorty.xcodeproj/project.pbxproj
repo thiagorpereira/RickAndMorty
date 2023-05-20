@@ -13,10 +13,11 @@
 		B04469F92A18344200F8FC99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04469F82A18344200F8FC99 /* ViewController.swift */; };
 		B04469FE2A18344300F8FC99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B04469FD2A18344300F8FC99 /* Assets.xcassets */; };
 		B0446A012A18344300F8FC99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04469FF2A18344300F8FC99 /* LaunchScreen.storyboard */; };
-		B0446A0C2A18382F00F8FC99 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0446A0B2A18382F00F8FC99 /* CharacterViewController.swift */; };
+		B0446A0C2A18382F00F8FC99 /* CharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0446A0B2A18382F00F8FC99 /* CharactersViewController.swift */; };
 		B0446A0F2A183E5100F8FC99 /* CharacterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0446A0E2A183E5100F8FC99 /* CharacterTableViewCell.swift */; };
 		B06A0B362A1860000035C327 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06A0B352A1860000035C327 /* Character.swift */; };
 		B06A0B392A186C8C0035C327 /* CharacterMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06A0B382A186C8C0035C327 /* CharacterMainViewModel.swift */; };
+		B0BB1A1A2A19539700787C96 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BB1A192A19539700787C96 /* CharacterDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,10 +29,11 @@
 		B04469FD2A18344300F8FC99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0446A002A18344300F8FC99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0446A022A18344300F8FC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B0446A0B2A18382F00F8FC99 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
+		B0446A0B2A18382F00F8FC99 /* CharactersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersViewController.swift; sourceTree = "<group>"; };
 		B0446A0E2A183E5100F8FC99 /* CharacterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTableViewCell.swift; sourceTree = "<group>"; };
 		B06A0B352A1860000035C327 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		B06A0B382A186C8C0035C327 /* CharacterMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMainViewModel.swift; sourceTree = "<group>"; };
+		B0BB1A192A19539700787C96 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		EB091E6E90ED0CF6B2BDE3AE /* Pods_RickAndMorty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMorty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB5BAB1F936BD76927D77BC /* Pods-RickAndMorty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMorty.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMorty/Pods-RickAndMorty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -95,7 +97,8 @@
 		B0446A0A2A1837F400F8FC99 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B0446A0B2A18382F00F8FC99 /* CharacterViewController.swift */,
+				B0446A0B2A18382F00F8FC99 /* CharactersViewController.swift */,
+				B0BB1A192A19539700787C96 /* CharacterDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -247,8 +250,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B04469F92A18344200F8FC99 /* ViewController.swift in Sources */,
+				B0BB1A1A2A19539700787C96 /* CharacterDetailsViewController.swift in Sources */,
 				B06A0B392A186C8C0035C327 /* CharacterMainViewModel.swift in Sources */,
-				B0446A0C2A18382F00F8FC99 /* CharacterViewController.swift in Sources */,
+				B0446A0C2A18382F00F8FC99 /* CharactersViewController.swift in Sources */,
 				B0446A0F2A183E5100F8FC99 /* CharacterTableViewCell.swift in Sources */,
 				B06A0B362A1860000035C327 /* Character.swift in Sources */,
 				B04469F52A18344200F8FC99 /* AppDelegate.swift in Sources */,

@@ -29,7 +29,7 @@ class CharacterTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        contentView.backgroundColor = .cyan
+        contentView.backgroundColor = .darkGray
         contentView.addSubview(characterNameLabel)
         contentView.addSubview(characterImageView)
         
