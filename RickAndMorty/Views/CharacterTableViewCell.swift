@@ -15,6 +15,15 @@ class CharacterTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.textColor = .white
+        return label
+    }()
+    
+    private let characterSpeciesLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textColor = .white
         return label
     }()
     
@@ -31,6 +40,7 @@ class CharacterTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .darkGray
         contentView.addSubview(characterNameLabel)
+        contentView.addSubview(characterSpeciesLabel)
         contentView.addSubview(characterImageView)
         
         applyContraints()
@@ -42,6 +52,11 @@ class CharacterTableViewCell: UITableViewCell {
             characterNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
         
+        let characterSpeciesLabelConstraint = [
+            characterSpeciesLabel.topAnchor.constraint(equalTo: characterNameLabel.topAnchor, constant: 20),
+            characterSpeciesLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 30),
+        ]
+        
         let characterImageViewConstraint = [
             characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
@@ -50,6 +65,7 @@ class CharacterTableViewCell: UITableViewCell {
         ]
             
         NSLayoutConstraint.activate(characterNameLabelConstraint)
+        NSLayoutConstraint.activate(characterSpeciesLabelConstraint)
         NSLayoutConstraint.activate(characterImageViewConstraint)
     }
     
@@ -62,6 +78,7 @@ class CharacterTableViewCell: UITableViewCell {
         guard let url = URL(string: model.imageURL) else {return}
         characterImageView.sd_setImage(with: url)
         characterNameLabel.text = model.name
+        characterSpeciesLabel.text = model.species
     }
     
     required init?(coder: NSCoder) {

@@ -10,4 +10,5 @@ import Foundation
 struct CharacterMainViewModel {
     let name: String
     let imageURL: String
+    let species: String
 }

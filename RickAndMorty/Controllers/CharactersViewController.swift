@@ -55,11 +55,11 @@ class CharactersViewController: UIViewController {
         }
     }
     
-    func fetchMoreCharactersIfNeeded(for indexPath: IndexPath) {
+    func fetchMoreCharactersOnScroll(for indexPath: IndexPath) {
         let lastRowIndex = characterTable.numberOfRows(inSection: 0) - 1
         if indexPath.row == lastRowIndex {
             currentPage += 1
-            
+
             let urlString = "https://rickandmortyapi.com/api/character/?page=\(currentPage)"
 
             AF.request(urlString).responseDecodable(of: GetCharactersResponse.self) { [weak self] response in
@@ -88,9 +88,8 @@ extension CharactersViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         let character = characters[indexPath.row]
-        print("CH1 \(character)")
 
-        cell.configure(with: CharacterMainViewModel(name: character.name , imageURL: character.image ))
+        cell.configure(with: CharacterMainViewModel(name: character.name , imageURL: character.image, species: character.species ))
         return cell
     }
     
@@ -99,6 +98,18 @@ extension CharactersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        fetchMoreCharactersIfNeeded(for: indexPath)
+        fetchMoreCharactersOnScroll(for: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("clickou")
+        tableView.deselectRow(at: indexPath, animated: true)
+//        let vc = TitlePreviewViewController()
+//        vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview ?? ""))
+//        self?.navigationController?.pushViewController(vc, animated: true)
+        let character = characters[indexPath.row]
+        let vc = CharacterDetailsViewController()
+        vc.configure(with: character)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
