@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		835C6047C83689A6BBBAD91E /* Pods_RickAndMorty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB091E6E90ED0CF6B2BDE3AE /* Pods_RickAndMorty.framework */; };
 		B03529242A1BC3D4009F4FAC /* RickAndMortyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03529232A1BC3D4009F4FAC /* RickAndMortyTests.swift */; };
-		B035292C2A1BC428009F4FAC /* CharactersViewControllersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B035292B2A1BC428009F4FAC /* CharactersViewControllersTest.swift */; };
 		B035292F2A1C1DBC009F4FAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B035292E2A1C1DBC009F4FAC /* Assets.xcassets */; };
 		B03529322A1C2491009F4FAC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03529312A1C2491009F4FAC /* Network.swift */; };
 		B03529352A1C2BAB009F4FAC /* NetworkProtocolSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03529342A1C2BAB009F4FAC /* NetworkProtocolSpy.swift */; };
@@ -23,6 +22,7 @@
 		B06A0B392A186C8C0035C327 /* CharacterMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06A0B382A186C8C0035C327 /* CharacterMainViewModel.swift */; };
 		B0BB1A1A2A19539700787C96 /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BB1A192A19539700787C96 /* CharacterDetailsViewController.swift */; };
 		B0FB9B592A1C3B370074AD03 /* HeaderCharacterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB9B582A1C3B370074AD03 /* HeaderCharacterTableView.swift */; };
+		B0FB9B5B2A1C6A210074AD03 /* CharactersViewControllersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FB9B5A2A1C6A210074AD03 /* CharactersViewControllersTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +39,6 @@
 		A8E4EF882482E51713A666AB /* Pods-RickAndMorty.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMorty.release.xcconfig"; path = "Target Support Files/Pods-RickAndMorty/Pods-RickAndMorty.release.xcconfig"; sourceTree = "<group>"; };
 		B03529212A1BC3D4009F4FAC /* RickAndMortyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RickAndMortyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03529232A1BC3D4009F4FAC /* RickAndMortyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyTests.swift; sourceTree = "<group>"; };
-		B035292B2A1BC428009F4FAC /* CharactersViewControllersTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharactersViewControllersTest.swift; path = ../../../../../Documents/CharactersViewControllersTest.swift; sourceTree = "<group>"; };
 		B035292E2A1C1DBC009F4FAC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "../../../../Downloads/AppIcons (1)/Assets.xcassets"; sourceTree = "<group>"; };
 		B03529312A1C2491009F4FAC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		B03529342A1C2BAB009F4FAC /* NetworkProtocolSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProtocolSpy.swift; sourceTree = "<group>"; };
@@ -55,6 +54,7 @@
 		B06A0B382A186C8C0035C327 /* CharacterMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterMainViewModel.swift; sourceTree = "<group>"; };
 		B0BB1A192A19539700787C96 /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		B0FB9B582A1C3B370074AD03 /* HeaderCharacterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCharacterTableView.swift; sourceTree = "<group>"; };
+		B0FB9B5A2A1C6A210074AD03 /* CharactersViewControllersTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CharactersViewControllersTest.swift; path = RickAndMortyTests/Controllers/CharactersViewControllersTest.swift; sourceTree = SOURCE_ROOT; };
 		EB091E6E90ED0CF6B2BDE3AE /* Pods_RickAndMorty.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RickAndMorty.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDB5BAB1F936BD76927D77BC /* Pods-RickAndMorty.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RickAndMorty.debug.xcconfig"; path = "Target Support Files/Pods-RickAndMorty/Pods-RickAndMorty.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,22 +87,22 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		B033050F2A1C6B9000187F80 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B0FB9B5A2A1C6A210074AD03 /* CharactersViewControllersTest.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		B03529222A1BC3D4009F4FAC /* RickAndMortyTests */ = {
 			isa = PBXGroup;
 			children = (
+				B033050F2A1C6B9000187F80 /* Controllers */,
 				B03529332A1C2B7B009F4FAC /* Doubles */,
-				B035292A2A1BC3F8009F4FAC /* Controllers */,
 				B03529232A1BC3D4009F4FAC /* RickAndMortyTests.swift */,
 			);
 			path = RickAndMortyTests;
-			sourceTree = "<group>";
-		};
-		B035292A2A1BC3F8009F4FAC /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				B035292B2A1BC428009F4FAC /* CharactersViewControllersTest.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B03529302A1C218C009F4FAC /* Network */ = {
@@ -345,8 +345,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0FB9B5B2A1C6A210074AD03 /* CharactersViewControllersTest.swift in Sources */,
 				B03529352A1C2BAB009F4FAC /* NetworkProtocolSpy.swift in Sources */,
-				B035292C2A1BC428009F4FAC /* CharactersViewControllersTest.swift in Sources */,
 				B03529242A1BC3D4009F4FAC /* RickAndMortyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
