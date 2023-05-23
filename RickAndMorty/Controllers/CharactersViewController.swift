@@ -6,73 +6,60 @@
 //
 
 import UIKit
-import Alamofire
 
 class CharactersViewController: UIViewController {
     
     private var characters: [Character] = [Character]()
+    private var headerCharacterTableView: HeaderCharacterTableView?
     var currentPage = 1
+    var network: NetworkProtocol?
     
     private let characterTable: UITableView = {
        let table = UITableView()
         table.register(CharacterTableViewCell.self, forCellReuseIdentifier: CharacterTableViewCell.identifier)
         return table
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkGray
-        title = "Characters"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.prefersLargeTitles = false
         
         view.addSubview(characterTable)
         characterTable.delegate = self
         characterTable.dataSource = self
         
+        
+        headerCharacterTableView = HeaderCharacterTableView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 120))
+        characterTable.tableHeaderView = headerCharacterTableView
+        
+
         fetchCharacters()
     }
-    
+        
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         characterTable.frame = view.bounds
     }
     
-    private func fetchCharacters() {
-
-        let url = "https://rickandmortyapi.com/api/character"
-
-        AF.request(url).responseDecodable(of: GetCharactersResponse.self) { [weak self] response in
-            switch response.result {
-            case .success(let resp):
-                self?.characters = resp.results
-                DispatchQueue.main.async {
-                    self?.characterTable.reloadData()
-                }
-            case .failure(let error):
-                print(error)
+    func fetchCharacters() {
+        network?.fetchCharacters(completion: { [weak self] charactersData in
+            self?.characters = charactersData
+            DispatchQueue.main.async {
+                self?.characterTable.reloadData()
             }
-        }
+        })
     }
     
     func fetchMoreCharactersOnScroll(for indexPath: IndexPath) {
         let lastRowIndex = characterTable.numberOfRows(inSection: 0) - 1
         if indexPath.row == lastRowIndex {
             currentPage += 1
-
-            let urlString = "https://rickandmortyapi.com/api/character/?page=\(currentPage)"
-
-            AF.request(urlString).responseDecodable(of: GetCharactersResponse.self) { [weak self] response in
-                switch response.result {
-                case .success(let resp):
-                    self?.characters.append(contentsOf: resp.results)
-                    DispatchQueue.main.async {
-                        self?.characterTable.reloadData()
-                    }
-                case .failure(let error):
-                    print("Error on fetch more Characters: \(error)")
+            network?.fetchMoreCharactersOnScroll(currentPage: currentPage, for: indexPath, completion: { [weak self] charactersData in
+                self?.characters.append(contentsOf: charactersData)
+                DispatchQueue.main.async {
+                    self?.characterTable.reloadData()
                 }
-            }
+            })
         }
     }
 }
@@ -102,11 +89,7 @@ extension CharactersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("clickou")
         tableView.deselectRow(at: indexPath, animated: true)
-//        let vc = TitlePreviewViewController()
-//        vc.configure(with: TitlePreviewViewModel(title: titleName, youtubeView: videoElement, titleOverview: title.overview ?? ""))
-//        self?.navigationController?.pushViewController(vc, animated: true)
         let character = characters[indexPath.row]
         let vc = CharacterDetailsViewController()
         vc.configure(with: character)

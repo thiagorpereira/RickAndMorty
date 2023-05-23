@@ -14,8 +14,8 @@ class CharacterTableViewCell: UITableViewCell {
     private let characterNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.textColor = .systemGray
         return label
     }()
     
@@ -23,14 +23,15 @@ class CharacterTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textColor = .systemGray
         return label
     }()
     
     private var characterImageView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.backgroundColor = .red
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         return imageView
@@ -38,7 +39,6 @@ class CharacterTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .darkGray
         contentView.addSubview(characterNameLabel)
         contentView.addSubview(characterSpeciesLabel)
         contentView.addSubview(characterImageView)
@@ -49,11 +49,11 @@ class CharacterTableViewCell: UITableViewCell {
     private func applyContraints() {
         let characterNameLabelConstraint = [
             characterNameLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 30),
-            characterNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            characterNameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor, constant: -10)
         ]
         
         let characterSpeciesLabelConstraint = [
-            characterSpeciesLabel.topAnchor.constraint(equalTo: characterNameLabel.topAnchor, constant: 20),
+            characterSpeciesLabel.topAnchor.constraint(equalTo: characterNameLabel.topAnchor, constant: 32),
             characterSpeciesLabel.leadingAnchor.constraint(equalTo: characterImageView.trailingAnchor, constant: 30),
         ]
         

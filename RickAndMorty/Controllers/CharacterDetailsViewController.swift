@@ -9,33 +9,12 @@ import UIKit
 
 class CharacterDetailsViewController: UIViewController {
     
-//    struct Character: Codable {
-//        let id: Int
-//        let name: String
-//        let status: String
-//        let species: String
-//        let type: String
-//        let gender: String
-//        let origin: OriginElement
-//        let location: LocationElement
-//        let image: String
-//        let url: String
-//    }
-//
-//    struct OriginElement: Codable {
-//        let name: String
-//        let url: String
-//    }
-//
-//    struct LocationElement: Codable {
-//        let name: String
-//        let url: String
-//    }
     private let characterNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .systemGray
         return label
     }()
     
@@ -43,7 +22,8 @@ class CharacterDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .systemGray
         return label
     }()
     
@@ -51,7 +31,8 @@ class CharacterDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .systemGray
         return label
     }()
     
@@ -59,7 +40,8 @@ class CharacterDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .systemGray
         return label
     }()
     
@@ -67,31 +49,35 @@ class CharacterDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .systemGray
         return label
     }()
     
     private let characterOriginLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .white
+        label.numberOfLines = 2
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor = .systemGray
         return label
     }()
     
     private let characterLocationLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .white
+        label.numberOfLines = 2
+        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.textColor = .systemGray
         return label
     }()
 
     
     private var characterImageView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.backgroundColor = .red
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 32
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         return imageView
@@ -100,6 +86,7 @@ class CharacterDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .systemBackground
         
         view.addSubview(characterImageView)
         view.addSubview(characterNameLabel)
@@ -117,9 +104,9 @@ class CharacterDetailsViewController: UIViewController {
     private func applyContraints() {
         
         let characterImageViewConstraint = [
-            characterImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 150),
-            characterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            
+            characterImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            characterImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            characterImageView.widthAnchor.constraint(equalToConstant: 300)
         ]
         let characterNameLabelConstraint = [
             characterNameLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 50),
@@ -132,8 +119,8 @@ class CharacterDetailsViewController: UIViewController {
         ]
         
         let characterSpeciesLabelConstraint = [
-            characterSpeciesLabel.topAnchor.constraint(equalTo: characterStatusLabel.bottomAnchor, constant: 30),
-            characterSpeciesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
+            characterSpeciesLabel.topAnchor.constraint(equalTo: characterGenderLabel.bottomAnchor, constant: 30),
+            characterSpeciesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ]
         
         let characterTypeLabelConstraint = [
@@ -145,28 +132,36 @@ class CharacterDetailsViewController: UIViewController {
             characterGenderLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 50),
             characterGenderLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
         ]
+        
+        let characterOriginLabelConstraint = [
+            characterOriginLabel.topAnchor.constraint(equalTo: characterStatusLabel.bottomAnchor, constant: 33),
+            characterOriginLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
+        ]
+        
+        let characterLocationLabelConstraint = [
+            characterLocationLabel.topAnchor.constraint(equalTo: characterOriginLabel.bottomAnchor, constant: 33),
+            characterLocationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
+        ]
 
-        
-        
         NSLayoutConstraint.activate(characterImageViewConstraint)
         NSLayoutConstraint.activate(characterNameLabelConstraint)
         NSLayoutConstraint.activate(characterStatusLabelConstraint)
         NSLayoutConstraint.activate(characterSpeciesLabelConstraint)
         NSLayoutConstraint.activate(characterTypeLabelConstraint)
         NSLayoutConstraint.activate(characterGenderLabelConstraint)
+        NSLayoutConstraint.activate(characterOriginLabelConstraint)
+        NSLayoutConstraint.activate(characterLocationLabelConstraint)
 
     }
     
     func configure(with model: Character) {
-        print("model name: \(model.name)")
-        print("model type: \(model.type)")
         characterNameLabel.text = model.name
         characterStatusLabel.text = model.status
         characterSpeciesLabel.text = model.species
         characterTypeLabel.text = model.type
         characterGenderLabel.text = model.gender
-        characterOriginLabel.text = model.origin.name
-        characterLocationLabel.text = model.location.name
+        characterOriginLabel.text = "Origin: \(model.origin.name)"
+        characterLocationLabel.text = "Location: \(model.location.name)"
         
         guard let url = URL(string: model.image) else {return}
         characterImageView.sd_setImage(with: url)
