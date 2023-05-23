@@ -40,7 +40,7 @@ class CharacterDetailsViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.textColor = .systemGray
         return label
     }()
@@ -124,7 +124,7 @@ class CharacterDetailsViewController: UIViewController {
         ]
         
         let characterTypeLabelConstraint = [
-            characterTypeLabel.topAnchor.constraint(equalTo: characterSpeciesLabel.bottomAnchor, constant: 30),
+            characterTypeLabel.topAnchor.constraint(equalTo: characterLocationLabel.bottomAnchor, constant: 30),
             characterTypeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30)
         ]
         
